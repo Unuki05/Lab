@@ -1,5 +1,5 @@
-a=int(input("ehnii too="))
-b=int(input("daraagiin too="))
-c=int(input("suuliin too="))
+a = float(input("Ehnii too="))
+b = float(input("Daraagiin too="))
+c = float(input("Suuliin too="))
 p=(a+b+c)/3
-print(p)
+print("dundaj ni=",p)
