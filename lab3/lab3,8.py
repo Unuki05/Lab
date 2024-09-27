@@ -7,7 +7,7 @@ def car(s):
         dollar = price.replace("$", "")
         dollar = float(dollar)
         togrog = dollar * mongo
-        mashin.append(togrog)
+        mashin.append(f"{togrog}₮")
     return mashin
 
 une = car(s)
