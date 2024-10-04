@@ -1,11 +1,11 @@
 class BankAccount:
     def __init__(self): 
         self.__attempts = 3    
-        self.__pin = "2005"     
+        self.__pin = "0921"     
         self.__balance = 0     
 
     def check_pin(self, user_pin):
-        self.__balance = 100
+        self.__balance = 0
         if user_pin == self.__pin:
             return True
         else:
@@ -25,7 +25,7 @@ class BankAccount:
 
     def deposit(self, amount):
         self.__balance += amount
-
+    
     def withdraw(self, amount):
         if amount > self.__balance:
             return 'insufficient_funds'

@@ -21,7 +21,7 @@ def main():
                 elif user_choice == "2":
                     amount = int(input("Та зарлага хийх дүнгээ оруулна уу: "))
                     result = account.withdraw(amount)
-                    if result == 'Таны дансны үлдэгдэл хүрэлцэхгүй байна!':
+                    if result == 'insufficient_funds': 
                         print("Таны дансны үлдэгдэл хүрэлцэхгүй байна!")
                     else:
                         print(f"Зарлага: {amount}")
