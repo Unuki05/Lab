@@ -1,8 +1,11 @@
-ner = input("Та нэрээ оруулна уу: ")
+input_str = input("Та нэрээ оруулна уу: ")
 
 def gg():
-    a = ner.split('|')
-    for i in a:
-        print(i)
+    names = input_str.split('|')
+
+
+    for name in names:
+        print(name)
+
 
 gg()
