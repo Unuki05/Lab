@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+ <h1>Манай сайтад тавтай морил!</h1>
+
+ <p>Энэ бол лаб№5-н дагуу хийж гүйцэтгэсэн миний анхны html хуудас.</p>
+
+ <p><a href="https://mandakh.edu.mn" target="_blank">Энэ бол Мандах Их Сургуулийн албан ёсны вэб сайт</a></p>
+
+ <p>Энэ бол сургуулийн лого:</p>
+
+ <img src="{{ url_for('static', filename='mandakh_logo.jpg') }}" alt="Мандах Их Сургуулийн Лого" width="150">
+
+ <p>Мандах Их Сургуулийн салбар сургуулиуд:</p>
+
+ <ol>
+     <li>Төв сургууль</li>
+     <li>Менежмент, технологийн сургууль</li>
+     <li>Дарханы салбар сургууль</li>
+ </ol>
+
+ <p>Лаб№5 хийж гүйцэтгэсэн <strong>П.Зоригтбаатар</strong></p>
+
+ <select id="colorSelect">
+    <option value="red">Улаан</option>
+    <option value="green">ногоон</option>
+    <option value="orange">улбар шар</option>
+</select>
+
+<button onclick="change_color()">Change Color</button>
+
+<div id="MyDiv"></div>
+
+<script>
+    function change_color() {
+        var select = document.getElementById("colorSelect");
+        var color = select.value;
+        var name = select.options[select.selectedIndex].text;
+        var div = document.getElementById("MyDiv");
+        div.style.backgroundColor = color;
+        div.innerHTML = "энэ бол " + name + " өнгө";
+    }
+</script>
+
+</body>
+</html>
