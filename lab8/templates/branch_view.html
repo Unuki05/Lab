@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Branch List</title>
+</head>
+<body>
+    <h3>Branch Information</h3>
+    <ul>
+        {% for branch in branches %}
+        <li>{{ branch['bname'] }} (ID: {{ branch['id'] }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
