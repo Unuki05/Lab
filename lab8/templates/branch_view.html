@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Branch List</title>
 </head>
 <body>
     <h3>Branch Information</h3>
+    {% if branches %}
     <ul>
         {% for branch in branches %}
-        <li>{{ branch['bname'] }} (ID: {{ branch['id'] }})</li>
+            <li>{{ branch['bname'] }} (ID: {{ branch['id'] }})</li>
         {% endfor %}
     </ul>
+    {% else %}
+    <p>No branches found!</p>
+    {% endif %}
 </body>
 </html>
