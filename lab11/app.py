@@ -8,15 +8,26 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route('/branch')
+@app.route('/branch', methods=['GET', 'POST'])
 def branch_list():
     conn = sqlite3.connect("Employee.db")
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
+
+    # Handle POST request to add a new branch
+    if request.method == 'POST':
+        branch_name = request.form['branch_name']
+        if branch_name.strip():
+            cursor.execute("INSERT INTO Branch (bname) VALUES (?)", (branch_name,))
+            conn.commit()
+    
+    # Fetch all branches
     cursor.execute("SELECT * FROM Branch")
     branches = cursor.fetchall()
     conn.close()
+
     return render_template("branch_view.html", branches=branches)
+
 
 # Route for displaying and adding workers
 @app.route('/worker', methods=['GET', 'POST'])
@@ -89,6 +100,7 @@ def delete_worker(id):
 @app.route('/worker/edit/<int:id>', methods=['GET', 'POST'])
 def edit_worker(id):
     conn = sqlite3.connect("Employee.db")
+    conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
     if request.method == 'POST':
@@ -98,13 +110,19 @@ def edit_worker(id):
         conn.commit()
         conn.close()
         return redirect(url_for('worker_list'))
-    
-    cursor.execute("SELECT * FROM Worker WHERE id = ?", (id,))
+
+    # Fetch worker details with the branch ID
+    cursor.execute("SELECT id, wname, bid FROM Worker WHERE id = ?", (id,))
     worker = cursor.fetchone()
-    cursor.execute("SELECT * FROM Branch")
+
+    # Fetch all branches for the dropdown
+    cursor.execute("SELECT id, bname FROM Branch")
     branches = cursor.fetchall()
     conn.close()
+
     return render_template("edit_worker.html", worker=worker, branches=branches)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
