@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Home Page</h1>
+
+{% if user %}
+    <p>Logged in as: {{ user['username'] }}</p>
+    <p>Role: {{ user['role'] }}</p>
+
+    {% if user['role'] == 'Admin' %}
+        <!-- Button to go to Admin Home Page for Admin users -->
+        <a href="{{ url_for('admin_home') }}" class="btn btn-primary mt-4">Go to Admin Home</a>
+    {% endif %}
+    
+{% else %}
+    <p>You are not logged in. <a href="{{ url_for('login') }}">Login</a></p>
+{% endif %}
+
+{% endblock %}
